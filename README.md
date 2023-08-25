@@ -1,6 +1,6 @@
 # XboxGameBarExample
 
-Simple XboxGameBar example that uses a fileMapping and mutex for IPC.
+A simple, complete XboxGameBar example that uses a fileMapping and mutex for synchronised IPC.
 
 
 
