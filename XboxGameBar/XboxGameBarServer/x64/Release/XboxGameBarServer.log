@@ -1,0 +1,15 @@
+﻿  MainPage.xaml.cpp
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\MainPage.xaml.cpp(37,2): warning C4091: 'typedef ': ignored on left of 'Rectangle' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\MainPage.xaml.cpp(43,2): warning C4091: 'typedef ': ignored on left of 'Line' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\MainPage.xaml.cpp(49,2): warning C4091: 'typedef ': ignored on left of 'Circle' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\MainPage.xaml.cpp(56,2): warning C4091: 'typedef ': ignored on left of 'TextData' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\MainPage.xaml.cpp(73,27): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+  Generating code
+  Finished generating code
+     Creating library C:\Users\Tristan\Downloads\XboxGameBar\x64\Release\XboxGameBarServer\XboxGameBarServer.lib and object C:\Users\Tristan\Downloads\XboxGameBar\x64\Release\XboxGameBarServer\XboxGameBarServer.exp
+  Generating code
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 2437 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  XboxGameBarServer.vcxproj -> C:\Users\Tristan\Downloads\XboxGameBar\x64\Release\XboxGameBarServer\XboxGameBarServer.exe
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.AppXPackage.Targets(841,5): warning : Package signing is enabled but no thumbprint or certificate path is specified.

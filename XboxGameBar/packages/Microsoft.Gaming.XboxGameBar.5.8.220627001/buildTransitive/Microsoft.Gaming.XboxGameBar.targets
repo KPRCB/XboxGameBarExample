@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Check TargetPlatformMinVersion during build to block unsupported configurations. -->
+  <Target Name="MicrosoftGamingXboxGameBarCheckTargetPlatformVersion" BeforeTargets="PrepareForBuild" 
+      Condition="'$(TargetPlatformVersion)' != '' and '$(TargetPlatformMinVersion)' != '' and '$(SkipMicrosoftGamingXboxGameBarCheckTargetPlatformVersion)'==''">
+    <PropertyGroup>
+      <MicrosoftGamingXboxGameBarTargetPlatformCheckValue>$([System.Version]::Parse('$(TargetPlatformVersion)').Build)</MicrosoftGamingXboxGameBarTargetPlatformCheckValue>
+    </PropertyGroup>
+    <Error 
+        Text="Microsoft.Gaming.XboxGameBar nuget package requires TargetPlatformVersion &gt;= 10.0.18362.0 (current project is $(MicrosoftGamingXboxGameBarTargetPlatformCheckValue))" 
+        Condition="$(MicrosoftGamingXboxGameBarTargetPlatformCheckValue) &lt; 18362" />
+  </Target>
+</Project>

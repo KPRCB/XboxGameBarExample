@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Native-Platform Condition="'$(Platform)' == 'Win32'">x86</Native-Platform>
+    <Native-Platform Condition="'$(Platform)' != 'Win32'">$(Platform)</Native-Platform>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="$(MSBuildThisFileDirectory)..\..\lib\uap10.0\Microsoft.Gaming.XboxGameBar.winmd">
+      <Implementation>Microsoft.Gaming.XboxGameBar.dll</Implementation>
+    </Reference>
+    <Reference Include="$(MSBuildThisFileDirectory)..\..\lib\uap10.0\Microsoft.Gaming.XboxGameBar.Authentication.winmd">
+      <!-- Implementation is handled in props file to workaround Microsoft.AppxPackage.Targets issues -->
+      <!--<Implementation>Microsoft.Gaming.XboxGameBar.dll</Implementation>-->
+    </Reference>
+    <Reference Include="$(MSBuildThisFileDirectory)..\..\lib\uap10.0\Microsoft.Gaming.XboxGameBar.Restricted.winmd">
+      <!-- Implementation is handled in props file to workaround Microsoft.AppxPackage.Targets issues -->
+      <!--<Implementation>Microsoft.Gaming.XboxGameBar.dll</Implementation>-->
+    </Reference>
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Native-Platform)\native\Microsoft.Gaming.XboxGameBar.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Native-Platform)\native\Microsoft.Gaming.XboxGameBar.pri" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\..\private\Microsoft.Gaming.XboxGameBar.Private.winmd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildThisFileDirectory)..\Microsoft.Gaming.XboxGameBar.targets"/>
+  <Import Project="$(MSBuildThisFileDirectory)..\Microsoft.Gaming.XboxGameBar.props"/>
+</Project>

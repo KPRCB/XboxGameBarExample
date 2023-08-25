@@ -1,0 +1,8 @@
+﻿  pch.cpp
+  App.xaml.cpp
+  MainPage.xaml.cpp
+  XamlTypeInfo.Impl.g.cpp
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\MainPage.xaml.cpp(188,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\App.xaml.cpp(60,25): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarServer\App.xaml.cpp(61,26): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\WindowsXaml\v16.0\8.2\Microsoft.Windows.UI.Xaml.Common.targets(415,5): error MSB4181: The "CompileXaml" task returned false but did not log an error.

@@ -1,0 +1,92 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. See LICENSE in the project root for license information. -->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Add a dependency for the app against VCLibs since we need it but the consuming app might be .NET only. -->
+  <ItemGroup Condition="('$(OutputType)' == 'AppContainerExe')">
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <GameBarWinmdName>Microsoft.Gaming.XboxGameBar.winmd</GameBarWinmdName>
+    <GameBarAuthWinmdName>Microsoft.Gaming.XboxGameBar.Authentication.winmd</GameBarAuthWinmdName>
+    <GameBarPrivateWinmdName>Microsoft.Gaming.XboxGameBar.Private.winmd</GameBarPrivateWinmdName>
+    <GameBarRestrictedWinmdName>Microsoft.Gaming.XboxGameBar.Restricted.winmd</GameBarRestrictedWinmdName>
+    <GameBarDllName>Microsoft.Gaming.XboxGameBar.dll</GameBarDllName>
+  </PropertyGroup>
+
+  <!-- The following two "corrections" are to remove the warning for Microsoft.Gaming.XboxGameBar.Private.winmd
+  not having an implementation.  We don't want activatable classes generated for this winmd -->
+  <Target Name="_FixWinmdCopyLocal" AfterTargets="ResolveNuGetPackageAssets">
+    <ItemGroup>
+      <GameBarPrivateWinmdCopyLocal Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.Filename)%(ReferenceCopyLocalPaths.Extension)' == '$(GameBarPrivateWinmdName)'" />
+    </ItemGroup>
+    <ItemGroup Condition="'@(GameBarPrivateWinmdCopyLocal)' != ''">
+      <ReferenceCopyLocalPaths Remove="@(GameBarPrivateWinmdCopyLocal)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_RemovePrivateWinmdHarvest" BeforeTargets="_ComputeAppxPackagePayload">
+    <ItemGroup>
+      <GameBarPrivateWinmdPackagingOutput Include="@(PackagingOutputs)" Condition="'%(PackagingOutputs.Filename)%(PackagingOutputs.Extension)' == '$(GameBarPrivateWinmdName)'" />
+    </ItemGroup>
+    <ItemGroup Condition="'@(GameBarPrivateWinmdPackagingOutput)' != ''">
+      <PackagingOutputs Remove="@(GameBarPrivateWinmdPackagingOutput)" />
+    </ItemGroup>
+    <ItemGroup>
+      <GameBarPrivateWinmd Include="$(MSBuildThisFileDirectory)..\private\Microsoft.Gaming.XboxGameBar.Private.winmd">
+        <SkipHarvestingWinmdRegistration>true</SkipHarvestingWinmdRegistration>
+        <TargetPath>Microsoft.Gaming.XboxGameBar.Private.winmd</TargetPath>
+        <OutputGroup>CustomOutputGroupForPackaging</OutputGroup>
+        <ProjectName>$(ProjectName)</ProjectName>
+      </GameBarPrivateWinmd>
+      <PackagingOutputs Include="@(GameBarPrivateWinmd)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- This "correction" is needed for two reasons
+  
+  1) Adding the implementation directly to the reference in Microsoft.Gaming.XboxGameBar.targets causes 
+  problems on NATIVE (non-managed) RELEASE builds. Microsoft.AppxPackage.Targets tries to look for the implementation
+  dll in the lib\uap10.0 folder, even though that's just the libs. 
+  
+  2) MANAGED projects using the new ProjectReference NuGet restore method do a lot of magic...except the magic doesn't
+  work for all winmds it seems. Microsoft.AppxPackage.targets generates activatable classes for Microsoft.Gaming.XboxGameBar.winmd
+  but it doesn't generate them for Microsoft.Gaming.XboxGameBar.Authentication.winmd. In fact, not sure how it would know which
+  dll implements the RTCs anyway.  
+  
+  This block here modifies the package outputs to ensure the implementation for Microsoft.Gaming.XboxGameBar.Authentication.winmd
+  is specified to be Microsoft.Gaming.XboxGameBar.dll and that activatable classes are generated.
+  -->
+  <Target Name="_AddWinmdImplementations" AfterTargets="_RemovePrivateWinmdHarvest">
+    <ItemGroup>
+      <PackagingOutputs Condition="'%(PackagingOutputs.TargetPath)'=='$(GameBarAuthWinmdName)'">
+        <Implementation>$(GameBarDllName)</Implementation>
+      </PackagingOutputs>
+      <PackagingOutputs Condition="'%(PackagingOutputs.TargetPath)'=='$(GameBarRestrictedWinmdName)'">
+        <Implementation>$(GameBarDllName)</Implementation>
+      </PackagingOutputs>
+      <PackagingOutputs Condition="'%(PackagingOutputs.TargetPath)'=='$(GameBarWinmdName)'">
+        <Implementation>$(GameBarDllName)</Implementation>
+      </PackagingOutputs>
+    </ItemGroup>
+  </Target>
+
+  <!-- This "correction" is needed to prevent an issue in Microsoft.AppxPackage.targets where it thinks there are two sources
+  for the Microsoft.Gaming.XboxGameBar.dll from different locations. Issue only occurs for NATIVE builds. -->
+  <Target Name="_RemoveDupeDllSource" AfterTargets="_AddWinmdImplementations" Condition="'$(Native-Platform)' != ''">
+    <ItemGroup>
+      <GameBarDllPackagingOutput Include="@(PackagingOutputs)" Condition="'%(PackagingOutputs.Filename)%(PackagingOutputs.Extension)' == '$(GameBarDllName)'" />
+    </ItemGroup>
+    <ItemGroup Condition="'@(GameBarDllPackagingOutput)' != ''">
+      <PackagingOutputs Remove="@(GameBarDllPackagingOutput)" />
+    </ItemGroup>
+    <ItemGroup>
+      <GameBarDll Include="$(MSBuildThisFileDirectory)..\runtimes\win10-$(Native-Platform)\native\Microsoft.Gaming.XboxGameBar.dll">
+        <TargetPath>Microsoft.Gaming.XboxGameBar.dll</TargetPath>
+        <OutputGroup>CustomOutputGroupForPackaging</OutputGroup>
+        <ProjectName>$(ProjectName)</ProjectName>
+      </GameBarDll>
+      <PackagingOutputs Include="@(GameBarDll)" />
+    </ItemGroup>
+  </Target>
+</Project>

@@ -1,0 +1,39 @@
+﻿  XboxGameBarClient.cpp
+  The contents of <variant> are available only with C++17 or later.
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\objectTypes.h(6,2): warning C4091: 'typedef ': ignored on left of 'Color' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\objectTypes.h(16,2): warning C4091: 'typedef ': ignored on left of 'Point' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\objectTypes.h(19,2): warning C4091: 'typedef ': ignored on left of 'Rect' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\objectTypes.h(23,2): warning C4091: 'typedef ': ignored on left of '_Rectangle' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\objectTypes.h(27,2): warning C4091: 'typedef ': ignored on left of 'Line' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\objectTypes.h(32,2): warning C4091: 'typedef ': ignored on left of 'Circle' when no variable is declared
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(23,19): error C2039: 'variant': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\string(24): message : see declaration of 'std'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(23,26): error C2065: 'variant': undeclared identifier
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(23,27): error C2275: '_Rectangle': illegal use of this type as an expression
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\objectTypes.h(20): message : see declaration of '_Rectangle'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(23,72): error C2977: 'std::vector': too many template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(430): message : see declaration of 'std::vector'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(23,74): error C2977: 'std::vector': too many template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(430): message : see declaration of 'std::vector'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(23,74): error C2059: syntax error: '>'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(23,86): error C2238: unexpected token(s) preceding ';'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(30,1): error C2664: 'HANDLE OpenMutexW(DWORD,BOOL,LPCWSTR)': cannot convert argument 3 from 'const _Elem *' to 'LPCWSTR'
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(30,56): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\synchapi.h(448,1): message : see declaration of 'OpenMutexW'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(32,1): error C2664: 'HANDLE OpenFileMappingW(DWORD,BOOL,LPCWSTR)': cannot convert argument 3 from 'const _Elem *' to 'LPCWSTR'
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(32,82): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\memoryapi.h(203,1): message : see declaration of 'OpenFileMappingW'
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(40,3): error C2065: 'objectList': undeclared identifier
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(52,21): error C2065: 'objectList': undeclared identifier
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(65,3): error C2065: 'objectList': undeclared identifier
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(70,3): error C2065: 'objectList': undeclared identifier
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(75,3): error C2065: 'objectList': undeclared identifier
+C:\Users\Tristan\Downloads\XboxGameBar\XboxGameBarClient\XboxGameBarServer.h(99,3): error C2065: 'objectList': undeclared identifier
